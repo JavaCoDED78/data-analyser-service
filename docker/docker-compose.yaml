@@ -18,7 +18,7 @@ volumes:
 
 services:
   generator:
-    image: 'androsor/springbootwithkafka/data-generator-service:latest'
+    image: 'androsor/data-producer-service:latest'
     networks:
       - app
     depends_on:
@@ -30,7 +30,7 @@ services:
       - '8081:8081'
 
   analyser:
-    image: 'androsor/springbootwithkafka/data-analyser-service:latest'
+    image: 'androsor/data-analyser-service:latest'
     networks:
       - app
     depends_on:
@@ -47,7 +47,7 @@ services:
       - '8082:8082'
 
   store:
-    image: 'ilyalisov/data-store-microservice:latest'
+    image: 'androsor/data-store-service:latest'
     networks:
       - app
     depends_on:
