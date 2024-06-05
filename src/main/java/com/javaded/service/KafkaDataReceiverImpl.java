@@ -31,11 +31,11 @@ public class KafkaDataReceiverImpl implements KafkaDataReceiver {
                         localDateTimeDeserializer)
                 .create();
         receiver.receive()
-                .subscribe(r -> {
+                .subscribe(record -> {
                     Data data = gson
-                            .fromJson(r.value().toString(), Data.class);
+                            .fromJson(record.value().toString(), Data.class);
                     kafkaDataService.handle(data);
-                    r.receiverOffset().acknowledge();
+                    record.receiverOffset().acknowledge();
                 });
     }
 

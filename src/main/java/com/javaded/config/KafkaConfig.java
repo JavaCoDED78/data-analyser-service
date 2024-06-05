@@ -58,21 +58,14 @@ public class KafkaConfig {
 
     @Bean
     public ReceiverOptions<String, Object> receiverOptions() {
-        ReceiverOptions<String, Object> receiverOptions = ReceiverOptions
-                .create(receiverProperties());
+        ReceiverOptions<String, Object> receiverOptions = ReceiverOptions.create(receiverProperties());
         return receiverOptions.subscription(topics)
-                .addAssignListener(partitions ->
-                        System.out.println("onPartitionAssigned: "
-                                + partitions))
-                .addRevokeListener(partitions ->
-                        System.out.println("onPartitionRevoked: "
-                                + partitions));
+                .addAssignListener(partitions -> System.out.println("onPartitionAssigned: " + partitions))
+                .addRevokeListener(partitions -> System.out.println("onPartitionRevoked: " + partitions));
     }
 
     @Bean
-    public KafkaReceiver<String, Object> receiver(
-            ReceiverOptions<String, Object> receiverOptions
-    ) {
+    public KafkaReceiver<String, Object> receiver( ReceiverOptions<String, Object> receiverOptions) {
         return KafkaReceiver.create(receiverOptions);
     }
 

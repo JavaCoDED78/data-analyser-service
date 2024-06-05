@@ -10,8 +10,7 @@ import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 
 @Component
-public class LocalDateTimeDeserializer
-        implements JsonDeserializer<LocalDateTime> {
+public class LocalDateTimeDeserializer implements JsonDeserializer<LocalDateTime> {
 
     @Override
     public LocalDateTime deserialize(
